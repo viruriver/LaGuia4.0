@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 22-sep-2018, 19:16:45
+    Document   : userRegistration
+    Created on : 27-sep-2018, 5:27:00
     Author     : ElViru
 --%>
 
@@ -8,7 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>La Guia 4.0</title>
+        
+        <title>JSP Page</title>
         
         <!-- Required meta tags -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,7 +30,24 @@
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     </head>
     <body>
-        <jsp:include page="navBar.jsp"/>
+        <h1>Hello World!</h1>
+        
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         
         
         
