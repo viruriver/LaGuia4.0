@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 
-                <a class="navbar-brand" href="#">La Guia 4.0</a>
+                <a class="navbar-brand" href="index.jsp">La Guia 4.0</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarAnonymous" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,7 +42,7 @@
 
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Home</a>
+                      <a class="nav-link" href="index.jsp">Home</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -76,7 +76,7 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                         <a class="dropdown-item" href="logIn.jsp">Iniciar Sesion</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Registrarse</a>
+                        <a class="dropdown-item" href="userRegistration.jsp">Registrarse</a>
                       </div>
                     </li>
                   </ul>
