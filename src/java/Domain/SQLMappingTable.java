@@ -13,5 +13,6 @@ public class SQLMappingTable {
     
     public static final String SQL_USER_SYSTEM_TYPE = "UserSystemType";
     public static final String SQL_DIM_ESTADO = "DimEstado";
+    public static final String SQL_DIM_GENERO = "DimGenero";
     
 }

@@ -33,7 +33,7 @@
 
             <div class="container">
         
-                <h1>LogIn!</h1>
+                <h1>User LogIn!</h1>
 
                 <div class="">
                 </div>
@@ -47,8 +47,10 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 <div class="p-2">
+                                    <h4>
                                         Iniciar Sesion
-                                        <i class="fas fa-sign-in-alt"></i>
+                                        <i class="fas fa-sign-in-alt"></i>                                        
+                                    </h4>
                                 </div>
 
                                 <form>

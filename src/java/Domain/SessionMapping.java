@@ -12,5 +12,7 @@ package Domain;
 public class SessionMapping {
     
     public static final String SESSION_LOG_USER_TYPE = "logUserType";
+    public static final String SESSION_LOG_USER = "logUser";
+    public static final String SESSION_LOG_USER_AUTH_PASS = "logUserAuthPass";
     
 }

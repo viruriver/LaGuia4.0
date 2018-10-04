@@ -76,7 +76,7 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                         <a class="dropdown-item" href="logIn.jsp">Iniciar Sesion</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="userRegistration.jsp">Registrarse</a>
+                        <a class="dropdown-item" href="UserRegistrationServlet">Registrarse</a>
                       </div>
                     </li>
                   </ul>
