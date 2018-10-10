@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,6 +34,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
         <!-- tagib -->
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     </head>
@@ -90,62 +96,82 @@
                                                 <input type="password" class="form-control" id="regPassword" placeholder="Password">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="regRePassword">Repetir Password</label>
+                                                <label for="regRePassword">Confirmar Password</label>
                                                 <input type="password" class="form-control" id="regRePassword" placeholder="Password">
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label for="regFecNac">Fecha de Nacimiento</label>
                                             <div class="form-row">
                                                 <div class="form-group col-md-2">
                                                     <label for="regFecNacDia"><small id="diaHelp" class="form-text text-muted">Dia</small></label>
                                                     <select id="regFecNacDia" class="form-control">
-                                                        <option selected>Choose...</option>
-                                                        <option>...</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <label for="regFecNacMes"><small id="diaHelp" class="form-text text-muted">Mes</small></label>
-                                                    <select id="regFecNacMes" class="form-control">
-                                                        <option selected>Choose...</option>
-                                                        <option>...</option>
+                                                        <option selected>Dia</option>
+                                                        <c:forEach items="${listDiaNac}" var="d">
+                                                            <option id="${d.id}">${d.desc}</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for="regFecNacAño"><small id="diaHelp" class="form-text text-muted">Año</small></label>
+                                                    <label for="regFecNacMes"><small id="mesHelp" class="form-text text-muted">Mes</small></label>
+                                                    <select id="regFecNacMes" class="form-control">
+                                                        <option selected>Mes</option>
+                                                        <c:forEach items="${listMesNac}" var="m">
+                                                            <option id="${m.id}">${m.desc}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label for="regFecNacAño"><small id="añoHelp" class="form-text text-muted">Año</small></label>
                                                     <select id="regFecNacAño" class="form-control">
-                                                        <option selected>Choose...</option>
-                                                        <option>...</option>
+                                                        <option selected>Año</option>
+                                                        <c:forEach items="${listAñoNac}" var="a">
+                                                            <option id="${a.id}">${a.desc}</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="regGenero">Genero</label>
-                                                <input type="text" class="form-control" id="regGenero">
+                                        
+                                        <div class="form-group">
+                                            <label for="regFecNac">Genero</label>
+                                            <div class="form-row">
+                                                <c:forEach items="${listGenero}" var="g">
+                                                    <div class="form-group col-md-2">
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="regRapGen${g.id}" value="option${g.id}">
+                                                          <label class="form-check-label" for="regRapGen${g.id}">${g.desc}</label>
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
                                             </div>
                                         </div>
+                                        
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="regPais">Pais</label>
                                                 <select id="regPais" class="form-control">
-                                                    <option selected>Choose...</option>
-                                                    <option>...</option>
+                                                        <c:forEach items="${listPais}" var="p">
+                                                            <option  value="${p.id}">${p.desc}</option>
+                                                        </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="regProvincia">Provincia</label>
                                                 <select id="regProvincia" class="form-control">
-                                                    <option selected>Choose...</option>
-                                                    <option>...</option>
+                                                <option selected>Provincia</option>
+                                                <c:if test = "${listProvincia != 'null' }">  
+                                                    <c:forEach items="${listProvincia}" var="pr">
+                                                        <option value="${pr.id}">${pr.desc}</option>
+                                                    </c:forEach>
+                                                </c:if>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="regLocalidad">Localidad</label>
                                                 <select id="regLocalidad" class="form-control">
-                                                    <option selected>Choose...</option>
-                                                    <option>...</option>
+                                                    <option selected>Localidad</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -163,7 +189,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade" id="regCompleta" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="tab-pane fade p-2 pt-4" id="regCompleta" role="tabpanel" aria-labelledby="profile-tab">
                                                 Registracion Completa
                                 </div>
                             </div>
@@ -172,7 +198,7 @@
                 </div>
 
                 <div class="container ml-auto col-lg-4">
-                    <div class="card text-center">
+                    <div class="card text-rigt">
                         <div class="card-body">
                             <div class="p-2">
                                 <h4>
@@ -184,14 +210,26 @@
                 </div>
 
             </div>
+            
         </div>
         
-        <c:param
         
+          
+
         <!-- library js and css Bootstraps jQuery and popper -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
+        
+        <script type="text/javascript">
+            
+            
+        </script>
         
     </body>
 </html>

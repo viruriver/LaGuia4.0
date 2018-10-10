@@ -25,6 +25,7 @@ public class Dao {
     
     private static final String COLUMNA_ID = "id";
     private static final String COLUMNA_DESC = "descripcion";
+    private static final String COLUMNA_ID_REF = "idRef";
     
     protected static final int OPERACION_EXITOSA = 1;
     protected static final int OPERACION_FALLIDA = -1;
@@ -80,6 +81,17 @@ public class Dao {
         }
         return result;
     }
+    
+    protected static ResultSet getResultSetSelectAllWhereCond(String tabla, int cond){
+        ResultSet result = null;
+        try{
+            result = getResultSet(connection.prepareStatement("select * from " + tabla + " where " + COLUMNA_ID_REF + " = " + cond));
+        }catch(SQLException e){
+            System.out.println("Problema al recuperar el ResultSet de select * from");
+            e.printStackTrace();
+        }
+        return result;
+    }
         
     protected static ResultSet getResultSetSelectOneId(String tabla, int id){
         ResultSet result = null;
@@ -111,6 +123,25 @@ public class Dao {
         List<GenericClass> genericList = new ArrayList();
         try {
             ResultSet result = getResultSetSelectAll(tabla);
+            while (result != null && result.next()) {
+                GenericClass generic = new GenericClass(
+                        result.getInt(COLUMNA_ID),
+                        result.getString(COLUMNA_DESC)
+                );
+                genericList.add(generic);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar los usuarios");
+            e.printStackTrace();
+        }
+        return genericList;
+    }
+    
+    public static List<GenericClass> getSelectAllWhereCond(String tabla, int cond){
+        
+        List<GenericClass> genericList = new ArrayList();
+        try {
+            ResultSet result = getResultSetSelectAllWhereCond(tabla,cond);
             while (result != null && result.next()) {
                 GenericClass generic = new GenericClass(
                         result.getInt(COLUMNA_ID),

@@ -23,6 +23,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import com.google.gson.Gson;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+
+
 
 /**
  *
@@ -32,13 +40,21 @@ import javax.servlet.http.HttpServletResponse;
 public class UserRegistrationServlet extends HttpServlet {
     
     
-    DaoPaisProvinciaCiudad daoPPC = new DaoPaisProvinciaCiudad();
-    List<PaisProvinciaCiudad> listLocalidades = new ArrayList(daoPPC.getPaisProvinciaCiudadALL());
-    
-    DaoFechaDdMmmmAaaa daoFecha = new DaoFechaDdMmmmAaaa();
-    List<FechaDdMmmmAaaa> listFechas = new ArrayList(daoFecha.getFechaDdMmmmAaaaALL());
     
     List<GenericClass> listGenero = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_GENERO));
+    
+    
+    List<GenericClass> listAñoNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_ANIO));
+    
+    List<GenericClass> listMesNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_MES));
+    
+    List<GenericClass> listDiaNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_DIA));
+    
+    
+    List<GenericClass> listPais = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_VIEW_PAIS));
+    
+    
+    List<GenericClass> listProvincia = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_VIEW_PROVINCIA));
     
     
     
@@ -70,17 +86,82 @@ public class UserRegistrationServlet extends HttpServlet {
         
         if (logUser == null) {
             
-            request.setAttribute(RequestMapping.REQUEST_LIST_LOCALIDADES, listLocalidades);
-            request.setAttribute(RequestMapping.REQUEST_LIST_FECHAS, listFechas);
-            request.setAttribute(RequestMapping.REQUEST_LIST_GENEROS, listGenero);
+            registracionRapidaForm(request, response);
             
             getServletContext().getRequestDispatcher("/userRegistration.jsp").forward(request, response);
         }
         else{
             
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/index.jsp");
         }
     }
+    
+    
+    private void registracionRapidaForm(HttpServletRequest request, HttpServletResponse response){
+        
+            /*ordenarListaDesc(listGenero);*/
+            request.setAttribute(RequestMapping.REQUEST_LIST_GENEROS, listGenero);
+            
+            ordenarListaId(listAñoNac, false);
+            request.setAttribute(RequestMapping.REQUEST_LIST_ANIO_NAC, listAñoNac);
+            
+            ordenarListaId(listMesNac,true);
+            request.setAttribute(RequestMapping.REQUEST_LIST_MES_NAC, listMesNac);
+            
+            ordenarListaId(listDiaNac, true);
+            request.setAttribute(RequestMapping.REQUEST_LIST_DIA_NAC, listDiaNac);
+                        
+            ordenarListaDesc(listPais, true);
+            request.setAttribute(RequestMapping.REQUEST_LIST_VIEW_PAIS, listPais);
+            
+            ordenarListaDesc(listProvincia, true);
+            request.setAttribute(RequestMapping.REQUEST_LIST_VIEW_PROVINCIA, listProvincia);
+    }
+    
+    private void ordenarListaId(List list,boolean order){
+        if(order){
+            Collections.sort(list, new Comparator<GenericClass>() {
+                @Override
+                public int compare(GenericClass g1, GenericClass g2){
+                    return new Integer(g1.getId()).compareTo(new Integer(g2.getId()));
+                }
+            });
+        }else{
+            Collections.sort(list, new Comparator<GenericClass>() {
+                @Override
+                public int compare(GenericClass g1, GenericClass g2){
+                    return new Integer(g2.getId()).compareTo(new Integer(g1.getId()));
+                }
+            });
+        }
+    }
+    
+    
+    private void ordenarListaDesc(List list,boolean order){
+        if(order){
+            Collections.sort(list, new Comparator<GenericClass>() {
+                @Override
+                public int compare(GenericClass g1, GenericClass g2){
+                    return g1.getDesc().compareTo(g2.getDesc());
+                }
+            });
+        }else{
+            Collections.sort(list, new Comparator<GenericClass>() {
+                @Override
+                public int compare(GenericClass g1, GenericClass g2){
+                    return g2.getDesc().compareTo(g1.getDesc());
+                }
+            });
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
    
