@@ -41,21 +41,6 @@ public class UserRegistrationServlet extends HttpServlet {
     
     
     
-    List<GenericClass> listGenero = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_GENERO));
-    
-    
-    List<GenericClass> listAñoNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_ANIO));
-    
-    List<GenericClass> listMesNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_MES));
-    
-    List<GenericClass> listDiaNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_DIA));
-    
-    
-    List<GenericClass> listPais = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_VIEW_PAIS));
-    
-    
-    List<GenericClass> listProvincia = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_VIEW_PROVINCIA));
-    
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -99,6 +84,13 @@ public class UserRegistrationServlet extends HttpServlet {
     
     private void registracionRapidaForm(HttpServletRequest request, HttpServletResponse response){
         
+            List<GenericClass> listGenero = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_GENERO));
+            List<GenericClass> listAñoNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_ANIO));
+            List<GenericClass> listMesNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_MES));
+            List<GenericClass> listDiaNac = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_FECHA_DIA));
+            List<GenericClass> listPais = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_VIEW_PAIS));
+            List<GenericClass> listProvincia = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_VIEW_PROVINCIA));
+    
             /*ordenarListaDesc(listGenero);*/
             request.setAttribute(RequestMapping.REQUEST_LIST_GENEROS, listGenero);
             

@@ -152,26 +152,26 @@
                                             <div class="form-group col-md-4">
                                                 <label for="regPais">Pais</label>
                                                 <select id="regPais" class="form-control">
-                                                        <c:forEach items="${listPais}" var="p">
-                                                            <option  value="${p.id}">${p.desc}</option>
-                                                        </c:forEach>
+                                                    <c:forEach items="${listPais}" var="p">
+                                                        <option  value="${p.id}">${p.desc}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="regProvincia">Provincia</label>
                                                 <select id="regProvincia" class="form-control">
-                                                <option selected>Provincia</option>
-                                                <c:if test = "${listProvincia != 'null' }">  
-                                                    <c:forEach items="${listProvincia}" var="pr">
-                                                        <option value="${pr.id}">${pr.desc}</option>
-                                                    </c:forEach>
-                                                </c:if>
+                                                    <option selected value="Provincia">Provincia</option>
+                                                    <c:if test = "${listProvincia != 'null' }">  
+                                                        <c:forEach items="${listProvincia}" var="pr">
+                                                            <option value="${pr.id}" id="regProvincia${pr.id}" >${pr.desc}</option>
+                                                        </c:forEach>
+                                                    </c:if>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="regLocalidad">Localidad</label>
                                                 <select id="regLocalidad" class="form-control">
-                                                    <option selected>Localidad</option>
+                                                    <option selected value="Localidad">Localidad</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -228,6 +228,41 @@
         
         <script type="text/javascript">
             
+            $('#regProvincia').change(function () {
+            var selectedValue = this.value;
+            var optionId = 'regProvincia' + selectedValue.toString();
+            var optionText = document.getElementById(optionId).text;
+    ;
+            
+             if (selectedValue === 'Provincia') {
+                $('#regLocalidad').empty();
+                $('#regLocalidad').append($('<option/>', {
+                            value : 'Localidad',
+                            text : 'Localidad'
+                        }));
+            } else {
+                
+                $('#regLocalidad').empty();
+                $('#regLocalidad').append($('<option/>', {
+                            value : selectedValue,
+                            text : optionText
+                        }));
+                
+                <%--
+                $.post('${PREFIX}/category', {parentCategory:selectedValue}, function(data) {
+                    $('#categorySelector').empty();
+                    $.each(data.categorySelectorList, function(key, value) {
+                        $('#categorySelector').append($('<option/>', {
+                            value : value['id'],
+                            text : value['category']
+                        }));
+                    });
+
+                }, 'json');
+                --%>
+            }
+
+        });
             
         </script>
         
