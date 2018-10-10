@@ -23,4 +23,6 @@ public class RequestMapping {
     public static final String REQUEST_LIST_VIEW_PAIS = "listPais";
     public static final String REQUEST_LIST_VIEW_PROVINCIA = "listProvincia";
     
+    public static final String REQUEST_LIST_LOCALIDADES_JSON = "jsonListLocalidades";
+    
 }

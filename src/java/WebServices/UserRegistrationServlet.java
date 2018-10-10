@@ -162,9 +162,30 @@ public class UserRegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         
         
+        
+        
+        
+        int codProvincia = Integer.parseInt(request.getParameter("actualizarLocalidades"));
+        
+        List<GenericClass> listLocalidadJava = new ArrayList(Dao.getSelectAllWhereCond(SQLMappingTable.SQL_DIM_LOCALIDAD, codProvincia ));
+        
+        ordenarListaId(listLocalidadJava, true);
+        
+        Gson ListLocalidades = new Gson();
+        String jsonListLocalidades = ListLocalidades.toJson(listLocalidadJava);
+                
+        response.setContentType("application/json");
+        
+        PrintWriter out = response.getWriter();
+        out.write(jsonListLocalidades);
+        
+        
+        
     }
-
     
+    
+    
+
     
     @Override
     public String getServletInfo() {
