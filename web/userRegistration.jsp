@@ -62,10 +62,10 @@
                             </div>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                               <li class="nav-item">
-                                <a class="nav-link active" id="liRegRapida" data-toggle="tab" href="#regRapida" role="tab" aria-controls="regRapida" aria-selected="true">Rapida</a>
+                                <a class="nav-link active" id="liRegRapida" data-toggle="tab" href="#regRapida" role="tab" aria-controls="regRapida" aria-selected="true">Completa</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" id="liRegCompleta" data-toggle="tab" href="#regCompleta" role="tab" aria-controls="regCompleta" aria-selected="false">Completa</a>
+                                <a class="nav-link" id="liRegCompleta" data-toggle="tab" href="#regCompleta" role="tab" aria-controls="regCompleta" aria-selected="false">Rapida</a>
                               </li>
                             </ul>
                             <div class="tab-content" id="registrationTabContent">
@@ -76,28 +76,28 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="regNombre">Nombre</label>
-                                                <input type="text" class="form-control" id="regRapNombre" name="regRapNombre" placeholder="Nombre">
+                                                <input type="text" class="form-control" id="regNombre" name="regNombre" placeholder="Nombre">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="regApellido">Apellido</label>
-                                                <input type="text" class="form-control" id="regRapApellido" name="regRapApellido" placeholder="Apellido">
+                                                <input type="text" class="form-control" id="regApellido" name="regApellido" placeholder="Apellido">
                                             </div>
                                         </div>
                                         
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="regEmail">Email</label>
-                                                <input type="email" class="form-control" id="regRapEmail" name="regRapEmail" placeholder="Email">
+                                                <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Email">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="regPassword">Password</label>
-                                                <input type="password" class="form-control" id="regRapPassword" name="regRapPassword" placeholder="Password">
+                                                <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Password">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="regRePassword">Confirmar Password</label>
-                                                <input type="password" class="form-control" id="regRapConfPassword" name="regRapConfPassword" placeholder="Confirmar Password">
+                                                <input type="password" class="form-control" id="regConfPassword" name="regConfPassword" placeholder="Confirmar Password">
                                             </div>
                                         </div>
                                         
@@ -105,29 +105,29 @@
                                             <label for="regFecNac">Fecha de Nacimiento</label>
                                             <div class="form-row">
                                                 <div class="form-group col-md-2">
-                                                    <label for="regRapFecNacDia"><small id="diaHelp" class="form-text text-muted">Dia</small></label>
-                                                    <select id="regRapFecNacDia" name="regRapFecNacDia" class="form-control">
+                                                    <label for="regFecNacDia"><small id="diaHelp" class="form-text text-muted">Dia</small></label>
+                                                    <select id="regFecNacDia" name="regFecNacDia" class="form-control">
                                                         <option selected>Dia</option>
                                                         <c:forEach items="${listDiaNac}" var="d">
-                                                            <option id="${d.id}">${d.desc}</option>
+                                                            <option id="${d.id}" value="${d.id}">${d.desc}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for="regRapFecNacMes"><small id="mesHelp" class="form-text text-muted">Mes</small></label>
-                                                    <select id="regRapFecNacMes" name="regRapFecNacMes" class="form-control">
+                                                    <label for="regFecNacMes"><small id="mesHelp" class="form-text text-muted">Mes</small></label>
+                                                    <select id="regFecNacMes" name="regFecNacMes" class="form-control">
                                                         <option selected>Mes</option>
                                                         <c:forEach items="${listMesNac}" var="m">
-                                                            <option id="${m.id}">${m.desc}</option>
+                                                            <option id="${m.id}" value="${m.id}">${m.desc}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-2">
-                                                    <label for="regRapFecNacAño"><small id="añoHelp" class="form-text text-muted">Año</small></label>
-                                                    <select id="regRapFecNacAño" name="regRapFecNacAño" class="form-control">
+                                                    <label for="regFecNacAnio"><small id="añoHelp" class="form-text text-muted">Año</small></label>
+                                                    <select id="regFecNacAnio" name="regFecNacAnio" class="form-control">
                                                         <option selected>Año</option>
                                                         <c:forEach items="${listAñoNac}" var="a">
-                                                            <option id="${a.id}">${a.desc}</option>
+                                                            <option id="${a.id}" value="${a.id}">${a.desc}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -135,13 +135,13 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label for="regRapGenero">Genero</label>
+                                            <label for="regGenero">Genero</label>
                                             <div class="form-row">
                                                 <c:forEach items="${listGenero}" var="g">
                                                     <div class="form-group col-md-2">
                                                         <div class="form-check form-check-inline">
-                                                          <input class="form-check-input" type="radio" name="regRapGen${g.id}" id="regRapGen${g.id}" value="option${g.id}">
-                                                          <label class="form-check-label" for="regRapGen${g.id}">${g.desc}</label>
+                                                          <input class="form-check-input" type="radio" name="regGenero" id="regGen${g.id}" value="${g.id}">
+                                                          <label class="form-check-label" for="regGen${g.id}">${g.desc}</label>
                                                         </div>
                                                     </div>
                                                 </c:forEach>
@@ -150,47 +150,89 @@
                                         
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <label for="regRapPais">Pais</label>
-                                                <select id="regRapPais" name="regRapPais" class="form-control">
+                                                <label for="regPais">Pais</label>
+                                                <select id="regPais" name="regPais" class="form-control">
                                                     <c:forEach items="${listPais}" var="p">
                                                         <option  value="${p.id}">${p.desc}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="regRapProvincia">Provincia</label>
-                                                <select id="regRapProvincia" name="regRapProvincia" class="form-control">
-                                                    <option selected value="Provincia" id="regRapProvinciaProvincia">Provincia</option>
+                                                <label for="regProvincia">Provincia</label>
+                                                <select id="regProvincia" name="regProvincia" class="form-control">
+                                                    <option selected value="Provincia" id="regProvinciaProvincia">Provincia</option>
                                                     <c:if test = "${listProvincia != 'null' }">  
                                                         <c:forEach items="${listProvincia}" var="pr">
-                                                            <option value="${pr.id}" id="regRapProvincia${pr.id}" >${pr.desc}</option>
+                                                            <option value="${pr.id}" id="regProvincia${pr.id}" >${pr.desc}</option>
                                                         </c:forEach>
                                                     </c:if>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="regRapLocalidad">Localidad</label>
-                                                <select id="regRapLocalidad" name="regRapLocalidad" class="form-control">
-                                                    <option selected value="Localidad" id="regRapLocalidadLocalidad">Localidad</option>
+                                                <label for="regLocalidad">Localidad</label>
+                                                <select id="regLocalidad" name="regLocalidad" class="form-control">
+                                                    <option selected value="Localidad" id="regLocalidadLocalidad">Localidad</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" id="regRapTerms" name="regRapTerms">
-                                              <label class="form-check-label" for="regRapTerms"> Acepto los terminos y condiciones. </label>
+                                              <input class="form-check-input" type="checkbox" id="regRapTerms" name="regTerms">
+                                              <label class="form-check-label" for="regTerms"> Acepto los terminos y condiciones. </label>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-2 ml-auto">
-                                                <input hidden="true" name="registracion" value="rapida">
+                                                <input hidden="true" name="registracionRapida" value="completa">
                                                 <button type="submit" class="btn btn-primary ml-auto">Registrarse</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade p-2 pt-4" id="regCompleta" role="tabpanel" aria-labelledby="profile-tab">
-                                                Registracion Completa
+                                    <form method="post" action="UserRegistrationServlet">
+                                        
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="regNombre">Nombre</label>
+                                                <input type="text" class="form-control" id="regNombre" name="regNombre" placeholder="Nombre">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="regApellido">Apellido</label>
+                                                <input type="text" class="form-control" id="regApellido" name="regApellido" placeholder="Apellido">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="regEmail">Email</label>
+                                                <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="regPassword">Password</label>
+                                                <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Password">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="regConfPassword">Confirmar Password</label>
+                                                <input type="password" class="form-control" id="regConfPassword" name="regConfPassword" placeholder="Confirmar Password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                              <input class="form-check-input" type="checkbox" id="regRapTerms" name="regTerms">
+                                              <label class="form-check-label" for="regTerms"> Acepto los terminos y condiciones. </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="form-group col-md-2 ml-auto">
+                                                <input hidden="true" name="registracionCompleta" value="rapida">
+                                                <button type="submit" class="btn btn-primary ml-auto">Registrarse</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -230,14 +272,14 @@
         --%>
         <script type="text/javascript">
             
-            $('#regRapProvincia').change(function () {
+            $('#regProvincia').change(function () {
                 var selectedValue = this.value;
-                var optionId = 'regRapProvincia' + selectedValue.toString();
+                var optionId = 'regProvincia' + selectedValue.toString();
                 var optionText = document.getElementById(optionId).text;
 
                 if (selectedValue === 'Provincia') {
-                    $('#regRapLocalidad').empty();
-                    $('#regRapLocalidad').append($('<option/>', {
+                    $('#regLocalidad').empty();
+                    $('#regLocalidad').append($('<option/>', {
                                 value : 'Localidad',
                                 text : 'Localidad'
                             }));
@@ -246,7 +288,7 @@
                         type:'POST',
                         url: 'UserRegistrationServlet',
                         datatype: 'json',
-                        data:'actualizarLocalidades='+$('#regRapProvincia').val(),
+                        data:'actualizarLocalidades='+$('#regProvincia').val(),
                         statusCode:{
                             404: function(){
                                 alert('Pagina no Encontrada');
@@ -257,10 +299,10 @@
                         },
                         success: function(lista){
                             //console.log(lista);
-                            $('#regRapLocalidad').empty();
+                            $('#regLocalidad').empty();
 
                             $.each(lista, function(key, value) {
-                                $('#regRapLocalidad').append($('<option/>', {
+                                $('#regLocalidad').append($('<option/>', {
                                     value : value['id'],
                                     text : value['desc'],
                                     id : value ['id']

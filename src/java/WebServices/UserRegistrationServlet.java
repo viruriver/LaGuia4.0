@@ -82,6 +82,95 @@ public class UserRegistrationServlet extends HttpServlet {
     }
     
     
+    
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        
+        
+        String logUser = "annonimous";
+        String registracion = "validar";
+        int codProvincia=0;
+        
+      
+        if(request.getSession().getAttribute(SessionMapping.SESSION_LOG_USER) != null){
+            logUser = (String) request.getSession().getAttribute(SessionMapping.SESSION_LOG_USER);
+        }
+        
+        if(request.getParameter("actualizarLocalidades") != null){
+            codProvincia = Integer.parseInt(request.getParameter("actualizarLocalidades"));
+        }
+        
+        if(request.getParameter("registracionRapida") != null){
+            registracion = request.getParameter("registracionRapida");
+            codProvincia=0;
+        }
+        if(request.getParameter("registracionCompleta") != null){
+            registracion = request.getParameter("registracionCompleta");
+            codProvincia=0;
+        }
+        
+        
+
+        if(codProvincia>0){
+            List<GenericClass> listLocalidadJava = new ArrayList(Dao.getSelectAllWhereCond(SQLMappingTable.SQL_DIM_LOCALIDAD, codProvincia ));
+            ordenarListaId(listLocalidadJava, true);
+
+            Gson ListLocalidades = new Gson();
+            String jsonListLocalidades = ListLocalidades.toJson(listLocalidadJava);
+
+            response.setContentType("application/json");
+
+            PrintWriter out = response.getWriter();
+            out.write(jsonListLocalidades);
+        }
+        
+        
+        
+        if (logUser.equalsIgnoreCase("annonimous")) {
+                
+                String regformNombre = request.getParameter("regNombre"); 
+                String regformApellido = request.getParameter("regApellido"); 
+                String regformEmail = request.getParameter("regEmail"); 
+                String regformPassword = request.getParameter("regPassword"); 
+                
+                if(registracion.equalsIgnoreCase("completa")){
+                    
+                    String regformAño = request.getParameter("regFecNacAnio"); 
+                    String regformMes = request.getParameter("regFecNacMes"); 
+                    String regformDia = request.getParameter("regFecNacDia"); 
+
+                    String regformFecNac = regformAño + regformMes + regformDia;
+
+                    int fechaNacId = Integer.parseInt(regformFecNac);
+
+                    int regformGenero = Integer.parseInt(request.getParameter("regGenero"));
+
+
+                    int regformPais = Integer.parseInt(request.getParameter("regPais")); 
+                    int regformProvincia = Integer.parseInt(request.getParameter("regProvincia")); 
+                    int regformLocalidad = Integer.parseInt(request.getParameter("regLocalidad")); 
+
+                }
+                
+                
+                int breakPoint = 0;
+                
+        }
+        else{
+            response.sendRedirect("/index.jsp");
+        }
+         
+    }
+    
+    
+    
+    
+    
+    
+    
     private void registracionRapidaForm(HttpServletRequest request, HttpServletResponse response){
         
             List<GenericClass> listGenero = new ArrayList(Dao.getSelectAll(SQLMappingTable.SQL_DIM_GENERO));
@@ -109,6 +198,7 @@ public class UserRegistrationServlet extends HttpServlet {
             ordenarListaDesc(listProvincia, true);
             request.setAttribute(RequestMapping.REQUEST_LIST_VIEW_PROVINCIA, listProvincia);
     }
+    
     
     private void ordenarListaId(List list,boolean order){
         if(order){
@@ -147,58 +237,6 @@ public class UserRegistrationServlet extends HttpServlet {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        String registracion = request.getParameter("registracion"); //puede ser rapida o completa
-        
-        int codProvincia = Integer.parseInt(request.getParameter("actualizarLocalidades"));
-        
-
-        if(codProvincia>0){
-            List<GenericClass> listLocalidadJava = new ArrayList(Dao.getSelectAllWhereCond(SQLMappingTable.SQL_DIM_LOCALIDAD, codProvincia ));
-            ordenarListaId(listLocalidadJava, true);
-
-            Gson ListLocalidades = new Gson();
-            String jsonListLocalidades = ListLocalidades.toJson(listLocalidadJava);
-
-            response.setContentType("application/json");
-
-            PrintWriter out = response.getWriter();
-            out.write(jsonListLocalidades);
-        }
-        
-        if(registracion.equalsIgnoreCase("rapida")){
-            
-        }else if(registracion.equalsIgnoreCase("completa")){
-                        
-        }else {
-            
-            
-        }
-        
-        
-        
-        
-
-
-
-                
-    }
-    
-    
-    
 
     
     @Override
