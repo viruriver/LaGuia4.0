@@ -71,33 +71,33 @@
                             <div class="tab-content" id="registrationTabContent">
                                 <div class="tab-pane fade show active p-2 pt-4" id="regRapida" role="tabpanel" aria-labelledby="home-tab">
 
-                                    <form method="post" action="LoginAuthServlet">
+                                    <form method="post" action="loginservel">
                                         
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="regNombre">Nombre</label>
-                                                <input type="text" class="form-control" id="regNombre" placeholder="Nombre">
+                                                <input type="text" class="form-control" id="regRapNombre" name="regRapNombre" placeholder="Nombre">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="regApellido">Apellido</label>
-                                                <input type="text" class="form-control" id="regApellido" placeholder="Apellido">
+                                                <input type="text" class="form-control" id="regRapApellido" name="regRapApellido" placeholder="Apellido">
                                             </div>
                                         </div>
                                         
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="regEmail">Email</label>
-                                                <input type="email" class="form-control" id="regEmail" placeholder="Email">
+                                                <input type="email" class="form-control" id="regRapEmail" name="regRapEmail" placeholder="Email">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="regPassword">Password</label>
-                                                <input type="password" class="form-control" id="regPassword" placeholder="Password">
+                                                <input type="password" class="form-control" id="regRapPassword" name="regRapPassword" placeholder="Password">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="regRePassword">Confirmar Password</label>
-                                                <input type="password" class="form-control" id="regRePassword" placeholder="Password">
+                                                <input type="password" class="form-control" id="regRapConfPassword" name="regRapConfPassword" placeholder="Confirmar Password">
                                             </div>
                                         </div>
                                         
@@ -105,8 +105,8 @@
                                             <label for="regFecNac">Fecha de Nacimiento</label>
                                             <div class="form-row">
                                                 <div class="form-group col-md-2">
-                                                    <label for="regFecNacDia"><small id="diaHelp" class="form-text text-muted">Dia</small></label>
-                                                    <select id="regFecNacDia" class="form-control">
+                                                    <label for="regRapFecNacDia"><small id="diaHelp" class="form-text text-muted">Dia</small></label>
+                                                    <select id="regRapFecNacDia" name="regRapFecNacDia" class="form-control">
                                                         <option selected>Dia</option>
                                                         <c:forEach items="${listDiaNac}" var="d">
                                                             <option id="${d.id}">${d.desc}</option>
@@ -114,8 +114,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for="regFecNacMes"><small id="mesHelp" class="form-text text-muted">Mes</small></label>
-                                                    <select id="regFecNacMes" class="form-control">
+                                                    <label for="regRapFecNacMes"><small id="mesHelp" class="form-text text-muted">Mes</small></label>
+                                                    <select id="regRapFecNacMes" name="regRapFecNacMes" class="form-control">
                                                         <option selected>Mes</option>
                                                         <c:forEach items="${listMesNac}" var="m">
                                                             <option id="${m.id}">${m.desc}</option>
@@ -123,8 +123,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-2">
-                                                    <label for="regFecNacAño"><small id="añoHelp" class="form-text text-muted">Año</small></label>
-                                                    <select id="regFecNacAño" class="form-control">
+                                                    <label for="regRapFecNacAño"><small id="añoHelp" class="form-text text-muted">Año</small></label>
+                                                    <select id="regRapFecNacAño" name="regRapFecNacAño" class="form-control">
                                                         <option selected>Año</option>
                                                         <c:forEach items="${listAñoNac}" var="a">
                                                             <option id="${a.id}">${a.desc}</option>
@@ -135,12 +135,12 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label for="regFecNac">Genero</label>
+                                            <label for="regRapGenero">Genero</label>
                                             <div class="form-row">
                                                 <c:forEach items="${listGenero}" var="g">
                                                     <div class="form-group col-md-2">
                                                         <div class="form-check form-check-inline">
-                                                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="regRapGen${g.id}" value="option${g.id}">
+                                                          <input class="form-check-input" type="radio" name="regRapGen${g.id}" id="regRapGen${g.id}" value="option${g.id}">
                                                           <label class="form-check-label" for="regRapGen${g.id}">${g.desc}</label>
                                                         </div>
                                                     </div>
@@ -150,40 +150,40 @@
                                         
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <label for="regPais">Pais</label>
-                                                <select id="regPais" class="form-control">
+                                                <label for="regRapPais">Pais</label>
+                                                <select id="regRapPais" name="regRapPais" class="form-control">
                                                     <c:forEach items="${listPais}" var="p">
                                                         <option  value="${p.id}">${p.desc}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="regProvincia">Provincia</label>
-                                                <select id="regProvincia" class="form-control">
+                                                <label for="regRapProvincia">Provincia</label>
+                                                <select id="regRapProvincia" name="regRapProvincia" class="form-control">
                                                     <option selected value="Provincia" id="regProvinciaProvincia">Provincia</option>
                                                     <c:if test = "${listProvincia != 'null' }">  
                                                         <c:forEach items="${listProvincia}" var="pr">
-                                                            <option value="${pr.id}" id="regProvincia${pr.id}" >${pr.desc}</option>
+                                                            <option value="${pr.id}" id="regRapProvincia${pr.id}" >${pr.desc}</option>
                                                         </c:forEach>
                                                     </c:if>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="regLocalidad">Localidad</label>
-                                                <select id="regLocalidad" class="form-control">
+                                                <label for="regRapLocalidad">Localidad</label>
+                                                <select id="regRapLocalidad" name="regRapLocalidad" class="form-control">
                                                     <option selected value="Localidad">Localidad</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" id="regTerms">
-                                              <label class="form-check-label" for="regTerms"> Acepto los terminos y condiciones. </label>
+                                              <input class="form-check-input" type="checkbox" id="regRapTerms" name="regRapTerms">
+                                              <label class="form-check-label" for="regRapTerms"> Acepto los terminos y condiciones. </label>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-2 ml-auto">
-                                                <input hidden="true" name="regTipo" value="rapida">
+                                                <input hidden="true" name="registracion" value="rapida">
                                                 <button type="submit" class="btn btn-primary ml-auto">Registrarse</button>
                                             </div>
                                         </div>
@@ -230,53 +230,47 @@
         --%>
         <script type="text/javascript">
             
-            $('#regProvincia').change(function () {
-            var selectedValue = this.value;
-            var optionId = 'regProvincia' + selectedValue.toString();
-            var optionText = document.getElementById(optionId).text;
-            
-            
-             if (selectedValue === 'Provincia') {
-                $('#regLocalidad').empty();
-                $('#regLocalidad').append($('<option/>', {
-                            value : 'Localidad',
-                            text : 'Localidad'
-                        }));
-            } else {
-                $.ajax({
-                    type:'POST',
-                    url: 'UserRegistrationServlet',
-                    datatype: 'json',
-                    data:'actualizarLocalidades='+$('#regProvincia').val(),
-                    statusCode:{
-                        404: function(){
-                            alert('Pagina no Encontrada');
-                        },
-                        500: function(){
-                            alert ('Error del Servidor');
-                        }
-                    },
-                    success: function(lista){
-                        console.log(lista);
-                        $('#regLocalidad').empty();
-                        
-                        
-                        $.each(lista, function(key, value) {
-                            $('#regLocalidad').append($('<option/>', {
-                                value : value['id'],
-                                text : value['desc'],
-                                id : value ['id']
-                            }));
-                        });
-                    
-                    }
-                });
-            }
-            <%--
-            var myObject = eval (' (' + lista + ') ');
-            --%>
+            $('#regRapProvincia').change(function () {
+                var selectedValue = this.value;
+                var optionId = 'regRapProvincia' + selectedValue.toString();
+                var optionText = document.getElementById(optionId).text;
 
-        });
+                if (selectedValue === 'Provincia') {
+                    $('#regRapLocalidad').empty();
+                    $('#regRapLocalidad').append($('<option/>', {
+                                value : 'Localidad',
+                                text : 'Localidad'
+                            }));
+                } else {
+                    $.ajax({
+                        type:'POST',
+                        url: 'UserRegistrationServlet',
+                        datatype: 'json',
+                        data:'actualizarLocalidades='+$('#regRapProvincia').val(),
+                        statusCode:{
+                            404: function(){
+                                alert('Pagina no Encontrada');
+                            },
+                            500: function(){
+                                alert ('Error del Servidor');
+                            }
+                        },
+                        success: function(lista){
+                            console.log(lista);
+                            $('#regRapLocalidad').empty();
+
+
+                            $.each(lista, function(key, value) {
+                                $('#regRapLocalidad').append($('<option/>', {
+                                    value : value['id'],
+                                    text : value['desc'],
+                                    id : value ['id']
+                                }));
+                            });
+                            }
+                    });
+                }
+            });
             
         </script>
         
