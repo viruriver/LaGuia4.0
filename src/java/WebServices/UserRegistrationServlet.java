@@ -161,22 +161,38 @@ public class UserRegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String registracion = request.getParameter("registracion"); //puede ser rapida o completa
         
-        
-
         int codProvincia = Integer.parseInt(request.getParameter("actualizarLocalidades"));
+        
+
+        if(codProvincia>0){
+            List<GenericClass> listLocalidadJava = new ArrayList(Dao.getSelectAllWhereCond(SQLMappingTable.SQL_DIM_LOCALIDAD, codProvincia ));
+            ordenarListaId(listLocalidadJava, true);
+
+            Gson ListLocalidades = new Gson();
+            String jsonListLocalidades = ListLocalidades.toJson(listLocalidadJava);
+
+            response.setContentType("application/json");
+
+            PrintWriter out = response.getWriter();
+            out.write(jsonListLocalidades);
+        }
+        
+        if(registracion.equalsIgnoreCase("rapida")){
+            
+        }else if(registracion.equalsIgnoreCase("completa")){
+                        
+        }else {
+            
+            
+        }
+        
+        
+        
+        
 
 
-        List<GenericClass> listLocalidadJava = new ArrayList(Dao.getSelectAllWhereCond(SQLMappingTable.SQL_DIM_LOCALIDAD, codProvincia ));
-        ordenarListaId(listLocalidadJava, true);
-
-        Gson ListLocalidades = new Gson();
-        String jsonListLocalidades = ListLocalidades.toJson(listLocalidadJava);
-
-        response.setContentType("application/json");
-
-        PrintWriter out = response.getWriter();
-        out.write(jsonListLocalidades);
 
                 
     }

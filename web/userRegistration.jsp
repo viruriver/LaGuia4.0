@@ -71,7 +71,7 @@
                             <div class="tab-content" id="registrationTabContent">
                                 <div class="tab-pane fade show active p-2 pt-4" id="regRapida" role="tabpanel" aria-labelledby="home-tab">
 
-                                    <form method="post" action="loginservel">
+                                    <form method="post" action="UserRegistrationServlet">
                                         
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
@@ -160,7 +160,7 @@
                                             <div class="form-group col-md-4">
                                                 <label for="regRapProvincia">Provincia</label>
                                                 <select id="regRapProvincia" name="regRapProvincia" class="form-control">
-                                                    <option selected value="Provincia" id="regProvinciaProvincia">Provincia</option>
+                                                    <option selected value="Provincia" id="regRapProvinciaProvincia">Provincia</option>
                                                     <c:if test = "${listProvincia != 'null' }">  
                                                         <c:forEach items="${listProvincia}" var="pr">
                                                             <option value="${pr.id}" id="regRapProvincia${pr.id}" >${pr.desc}</option>
@@ -171,7 +171,7 @@
                                             <div class="form-group col-md-4">
                                                 <label for="regRapLocalidad">Localidad</label>
                                                 <select id="regRapLocalidad" name="regRapLocalidad" class="form-control">
-                                                    <option selected value="Localidad">Localidad</option>
+                                                    <option selected value="Localidad" id="regRapLocalidadLocalidad">Localidad</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -256,9 +256,8 @@
                             }
                         },
                         success: function(lista){
-                            console.log(lista);
+                            //console.log(lista);
                             $('#regRapLocalidad').empty();
-
 
                             $.each(lista, function(key, value) {
                                 $('#regRapLocalidad').append($('<option/>', {
